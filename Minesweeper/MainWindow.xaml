@@ -1,0 +1,48 @@
+﻿<Window x:Class="Minesweeper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper"
+        mc:Ignorable="d"
+        Title="Minesweeper version 1.2" MinWidth="600" MinHeight="360" Width="650" Height="431" MaxWidth="1300" MaxHeight="720" Background="#FF126748" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <Menu x:Name="mnu" Height="25" VerticalAlignment="Top" Background="#FF1B7C59">
+            <MenuItem Header="游戏(_G)" Height="25">
+                <MenuItem Header="简单(_E)" Click="Button_Ez_Click"/>
+                <MenuItem Header="中等(_M)" Click="Button_Md_Click"/>
+                <MenuItem Header="困难(_H)" Click="Button_Hd_Click"/>
+                <MenuItem Header="主题(_T)">
+                    <MenuItem Header="花园(_G)" Click="Theme_GD_Click"/>
+                    <MenuItem Header="经典(_C)" Click="Theme_CL_Click"/>
+                </MenuItem>
+                <MenuItem Header="退出(_X)" Click="MenuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="关于(_A)">
+                <MenuItem Header="关于游戏(_A)" Click="MnuAbout_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="10,35,10,10" MinWidth="360" MinHeight="140">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Button_Ez" Content="Easy Mode" Click="Button_Ez_Click" Margin="10" FontSize="36" Background="#FF64A32E"  MinWidth="260" MinHeight="50" BorderBrush="{x:Null}" Foreground="White"/>
+            <Button x:Name="Button_Md" Content="Medium Mode" Click="Button_Md_Click" Margin="10" FontSize="36" Background="#FFC9A115" MinWidth="260" MinHeight="50" Grid.Column="1"  BorderBrush="{x:Null}" Foreground="White"/>
+            <Button x:Name="Button_Hd" Content="Hard Mode" Click="Button_Hd_Click" Margin="10"  FontSize="36" Background="#FFFF3333" MinWidth="260" MinHeight="50" Grid.Row="1" BorderBrush="{x:Null}" Foreground="White"/>
+            <Button x:Name="Button_Cm" Content="Custom" Click="Button_Cm_Click" Margin="10"  FontSize="36" Background="#FF9B4688" MinWidth="260" MinHeight="50" Grid.Column="1" Grid.Row="1" BorderBrush="{x:Null}" Foreground="White"/>
+            <Button x:Name="Button_GD" Content="Garden" Margin="10" Click="Theme_GD_Click" FontSize="36" MinWidth="260" MinHeight="50" Grid.Column="0" Grid.Row="2" BorderBrush="{x:Null}" Foreground="White">
+                <Button.Background>
+                    <ImageBrush ImageSource="img/GD.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="Button_CL" Content="Classic" Margin="10" Click="Theme_CL_Click" FontSize="36" Background="#FF229BFF" MinWidth="260" MinHeight="50" Grid.Column="1" Grid.Row="2" BorderBrush="{x:Null}" Foreground="White"/>
+        </Grid>
+    </Grid>
+</Window>

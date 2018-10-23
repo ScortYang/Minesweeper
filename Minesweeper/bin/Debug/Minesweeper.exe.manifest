@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Minesweeper.exe" size="916040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Minesweeper.exe" size="917064">
       <assemblyIdentity name="Minesweeper" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qbZyjLI1YDC1J/W+GrWHRnmC2WsIRtPGptLahHpix10=</dsig:DigestValue>
+        <dsig:DigestValue>62vT/IHTM8/uN9l9XFeowsnw7xA2q3pFQDRm21ltZzo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -52,7 +52,7 @@ namespace Minesweeper
         }
         private void MnuAbout_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Minesweeper Version 1.2\n By Scort");
+            MessageBox.Show("Minesweeper Version 1.3\n By Scort");
         }
 
         private void Theme_GD_Click(object sender, RoutedEventArgs e)

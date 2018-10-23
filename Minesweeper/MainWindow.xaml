@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Minesweeper"
         mc:Ignorable="d"
-        Title="Minesweeper version 1.2" MinWidth="600" MinHeight="360" Width="650" Height="431" MaxWidth="1300" MaxHeight="720" Background="#FF126748" WindowStartupLocation="CenterScreen">
+        Title="Minesweeper version 1.3" MinWidth="600" MinHeight="360" Width="650" Height="431" MaxWidth="1300" MaxHeight="720" Background="#FF126748" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,0">
         <Menu x:Name="mnu" Height="25" VerticalAlignment="Top" Background="#FF1B7C59">
             <MenuItem Header="游戏(_G)" Height="25">

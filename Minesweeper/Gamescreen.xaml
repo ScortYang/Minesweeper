@@ -5,12 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
       Title="Gamescreen" Height="456" Width="826"  ResizeMode="NoResize" IsHitTestVisible="True" Background="#FF126748" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <RoutedUICommand x:Key="ClickCommand" Text="Text" />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource ClickCommand}" Executed="EventHandler" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="C" Modifiers="Ctrl" Command="{StaticResource ClickCommand}" />
+    </Window.InputBindings>
     <Grid>
-        <Border Name="NumBdr" BorderBrush="#FF004B03" BorderThickness="3" Height="62" Margin="5,27,5,0" VerticalAlignment="Top" Background="#FF27AC7B"/>
+        <Border Name="NumBdr" BorderBrush="#FF004B03" BorderThickness="3" Height="62" Margin="5,27,5,0" VerticalAlignment="Top" Background="#FF27AC7B">
+        </Border>
         <DockPanel  Grid.Row="0" LastChildFill="False" Margin="0,0,0,393">
             <Menu x:Name="mnu"  DockPanel.Dock="Top" Background="#FF1B7C59" Height="25">
-                <MenuItem Header="游戏(_G)" Click="MenuItem_Click" Height="25">
-                    <MenuItem Header="新游戏(_N)"/>
+                <MenuItem Header="游戏(_G)" Click="MenuRestart_Click" Height="25">
+                    <MenuItem Header="新游戏(_N)" Click="MenuRestart_Click"/>
                     <MenuItem Header="退出(_X)" Click="MenuExit_Click"/>
                 </MenuItem>
                 <MenuItem Header="关于(_A)">

@@ -28,6 +28,7 @@ namespace Minesweeper
             CurrentLevel = a;
             OriginLevel = a;
             SafeNum = 0;
+            Score = 0;
             LifeNum = 5;
             ClickTimer.Elapsed += new ElapsedEventHandler(ClickOnTimedEvent);
             ClickTimer.AutoReset = true;
@@ -73,18 +74,6 @@ namespace Minesweeper
             SetLevelImg();
             SetLifeImg();
             SafeNum = 0;
-        }
-
-        private void ClickOnTimedEvent(object sender, ElapsedEventArgs e)
-        {
-            isAroundSetable = false;
-            ClickTimer.Stop();
-        }
-
-        private void InitOnTimedEvent(object sender, ElapsedEventArgs e)
-        {
-            isLevelOver = false;
-            InitTimer.Stop();
         }
 
         private void Restart()
@@ -188,12 +177,12 @@ namespace Minesweeper
             MineButton p = sender as MineButton;
             if (p.isLeftDown)
             {
-                if(p.isRightDown)
+                if (p.isRightDown)
                 {
                     isAroundSetable = true;
                     ClickTimer.Start();
                 }
-                if(!isAroundSetable)
+                if (!isAroundSetable)
                     ClickButton(p);
             }
             p.isLeftDown = false;
@@ -236,16 +225,6 @@ namespace Minesweeper
             SafeNum++;
             if (SafeNum == 250 - (CurrentLevel * 2 + 18))
             {
-                //for (int i = 0; i < DIAMONDSCOUNTX; i++)
-                //{
-                //    for (int j = 0; j < DIAMONDSCOUNTY; j++)
-                //    {
-                //        if (mine_arr[i, j].bflag && !mine_arr[i, j].isboom)
-                //        {
-                //            return;
-                //        }
-                //    }
-                //}
                 int moreScore = 0;
                 for (int i = 0; i < MINEBUTTONSCOUNTX; i++)
                 {
@@ -272,37 +251,21 @@ namespace Minesweeper
             if (ncount == 0) //递归消除空格
             {
                 if (p.cx > 0)
-                {
                     ClickButton(MineArry[p.cx - 1, p.cy]);
-                }
                 if (p.cx > 0 && p.cy > 0)
-                {
                     ClickButton(MineArry[p.cx - 1, p.cy - 1]);
-                }
                 if (p.cy > 0)
-                {
                     ClickButton(MineArry[p.cx, p.cy - 1]);
-                }
                 if (p.cy > 0 && p.cx < MINEBUTTONSCOUNTX - 1)
-                {
                     ClickButton(MineArry[p.cx + 1, p.cy - 1]);
-                }
                 if (p.cx < MINEBUTTONSCOUNTX - 1)
-                {
                     ClickButton(MineArry[p.cx + 1, p.cy]);
-                }
                 if (p.cx > 0 && p.cy < MINEBUTTONSCOUNTY - 1)
-                {
                     ClickButton(MineArry[p.cx - 1, p.cy + 1]);
-                }
                 if (p.cy < MINEBUTTONSCOUNTY - 1)
-                {
                     ClickButton(MineArry[p.cx, p.cy + 1]);
-                }
                 if (p.cx < MINEBUTTONSCOUNTX - 1 && p.cy < MINEBUTTONSCOUNTY - 1)
-                {
                     ClickButton(MineArry[p.cx + 1, p.cy + 1]);
-                }
             }
             if (ncount == 0)
                 SetButtonImage(p, 10);
@@ -335,7 +298,7 @@ namespace Minesweeper
             MineButton p = sender as MineButton;
             if (p.isRightDown)
             {
-                if(p.isLeftDown)
+                if (p.isLeftDown)
                 {
                     isAroundSetable = true;
                     ClickTimer.Start();
@@ -374,7 +337,7 @@ namespace Minesweeper
                     BoomNum--;
                     SetButtonImage(p, 11);
                     SetBoomImg();
-                    if (BoomNum == 250-SafeNum && SafeNum == 250 - (CurrentLevel * 2 + 18))
+                    if (BoomNum == 250 - SafeNum && SafeNum == 250 - (CurrentLevel * 2 + 18))
                     {
                         //for (int i = 0; i < MINEBUTTONSCOUNTX; i++)
                         //    for (int j = 0; j < MINEBUTTONSCOUNTY; j++)
@@ -595,7 +558,15 @@ namespace Minesweeper
 
         private void SetNum(Image p, int n)
         {
-            p.Source = new BitmapImage(new Uri("pack://application:,,,/img/num" + n.ToString() + ".png", UriKind.RelativeOrAbsolute));
+            try
+            {
+                p.Source = new BitmapImage(new Uri("pack://application:,,,/img/num" + n.ToString() + ".png", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+                MessageBox.Show("分数爆表了！！！");
+                Score = Score - 10000;
+            }
         }
 
 
@@ -634,6 +605,19 @@ namespace Minesweeper
         }
 
 
+        private void ClickOnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            isAroundSetable = false;
+            ClickTimer.Stop();
+        }
+
+        private void InitOnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            isLevelOver = false;
+            InitTimer.Stop();
+        }
+
+
         private void MenuExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -641,12 +625,20 @@ namespace Minesweeper
 
         private void MnuAbout_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("MineSweeper \n version 1.2 \n By Scort");
+            MessageBox.Show("MineSweeper \n version 1.3 \n By Scort");
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuRestart_Click(object sender, RoutedEventArgs e)
         {
             Restart();
+        }
+
+        private void EventHandler(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 25; i++)
+                for (int j = 0; j < 10; j++)
+                    if (MineArry[i, j].isboom == false)
+                        ClickButton(MineArry[i, j]);
         }
     }
 }
